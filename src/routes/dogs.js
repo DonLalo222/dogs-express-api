@@ -1,9 +1,10 @@
-const express = require('express');
+import express from 'express';
+import { search, details } from "../controllers/dogs-controller.js";
+
 const router = express.Router();
 
-const dogsController = require('../controllers/dogs-controller')
+router.get('/search/:inputString', search);
+router.get('/details', details);
 
-router.get('/', dogsController.search);
 
-
-module.exports = router;
+export { router };

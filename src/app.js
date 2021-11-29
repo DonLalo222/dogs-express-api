@@ -1,15 +1,10 @@
-
-const express = require('express');
+import express from 'express';
+import { router as dogRouter } from "./routes/dogs.js";
 const app = express();
 const port = 3000;
 
-const dogs = require('./routes/dogs');
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
 // routes
-app.use('/dogs', dogs);
+app.use('/dogs', dogRouter);
 
 app.listen(port, () => {
   console.log(`Api listening at http://localhost:${port}`)
