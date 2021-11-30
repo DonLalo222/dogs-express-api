@@ -6,4 +6,6 @@ class Dog{
     }
 }
 
-module.exports = Dog;
+export {
+    Dog
+}
