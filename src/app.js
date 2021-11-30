@@ -7,7 +7,7 @@ const port = 3000;
 
 app.use(helmet());
 // routes
-app.use('/dogs', dogRouter);
+app.use('/api/dogs', dogRouter);
 
 app.listen(port, () => {
   console.log(`Api listening at http://localhost:${port}`)

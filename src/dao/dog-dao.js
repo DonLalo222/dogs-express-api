@@ -2,11 +2,19 @@ import fetch from "node-fetch";
 import cheerio from "cheerio";
 import { data } from "../data/dogs.js";
 
+// quita acentos
+function removeAccents(str){
+  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+} 
+//
+
 function searchByInputUser(input) {
   let coincidencias = [];
+  let inputNormalize = removeAccents(input);
   //
   data.map((element) => {
-    if (element.name.toLowerCase().indexOf(input) !== -1) {
+    let normalize = removeAccents(element.name.toLowerCase());
+    if (normalize.indexOf(inputNormalize) !== -1) {
       coincidencias.push(element);
     }
   });
@@ -101,4 +109,9 @@ async function detailsByUrl(url) {
   return dog;
 }
 
-export { searchByInputUser, detailsByUrl };
+function findAllByFirstLetter(letter){
+  const result = data.filter(dog => dog.name.charAt(0).toLocaleUpperCase() === letter);
+  return result;
+}
+
+export { searchByInputUser, detailsByUrl, findAllByFirstLetter };

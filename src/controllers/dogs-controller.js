@@ -1,4 +1,4 @@
-import { detailsByUrl, searchByInputUser } from "../dao/dog-dao.js";
+import { detailsByUrl, searchByInputUser, findAllByFirstLetter } from "../dao/dog-dao.js";
 
 function search(req, res){
     let input = req.params.inputString.trim();
@@ -20,7 +20,18 @@ async function details(req, res){
 
 };
 
+function letter(req, res){
+    let input = req.params.inputString.trim();
+    let result = findAllByFirstLetter(input.toLocaleUpperCase());
+
+    res.status(200).json({
+        count: result.length,
+        result: result
+    });
+}
+
 export {
     search,
-    details
+    details,
+    letter
 }
