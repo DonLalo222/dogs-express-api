@@ -1,5 +1,6 @@
 # dogs-express-api
  
+ Api de Dogs que contiene información de 240 razas, información obtenida mediante técnicas de web scraping usando tecnologías como node, librería cheerio (manipulación del Dom), escrito en javascript con expressjs.
 
 
 ## Rutas
