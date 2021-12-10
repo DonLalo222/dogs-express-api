@@ -1,40 +1,64 @@
-import { detailsByUrl, searchByInputUser, findAllByFirstLetter } from "../dao/dog-dao.js";
+import {
+  detailsByUrl,
+  searchByInputUser,
+  findAllByFirstLetter,
+} from "../dao/dog-dao.js";
 
-function search(req, res){
-    let input = req.params.inputString.trim();
+function search(req, res) {
+  let input = req.params.inputString.trim();
+  res.setHeader("Content-Type", "application/json");
+  try {
     let result = searchByInputUser(input);
-
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json({
+    //
+    if (result.length > 0) {
+      res.status(200).json({
         count: result.length,
-        result: result
+        result: result,
+      });
+    } else {
+      res.status(404).json({
+        message: "not found",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "internal error",
     });
-};
+  }
+}
 
-async function details(req, res){
-    let url = req.query.url.trim();
+async function details(req, res) {
+  let url = req.query.url.trim();
+  res.setHeader("Content-Type", "application/json");
+  try {
     let result = await detailsByUrl(url);
-
-    res.setHeader('Content-Type', 'application/json');
     res.status(200).json({
-        result: result
+      result: result,
     });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "internal error",
+    });
+  }
+}
 
-};
-
-function letter(req, res){
-    let input = req.params.inputString.trim();
+function letter(req, res) {
+  let input = req.params.inputString.trim();
+  res.setHeader("Content-Type", "application/json");
+  try {
     let result = findAllByFirstLetter(input.toLocaleUpperCase());
-
-    res.setHeader('Content-Type', 'application/json');
     res.status(200).json({
-        count: result.length,
-        result: result
+      count: result.length,
+      result: result,
     });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "internal error",
+    });
+  }
 }
 
-export {
-    search,
-    details,
-    letter
-}
+export { search, details, letter };
