@@ -134,7 +134,7 @@ async function detailsByIdDao(id, where) {
 
   pushOnArray(info, $);
 
-  const dog = {
+  const pet = {
     nombre: nombre,
     descripcion: descripcion,
     clasificacionFCI: clasificacionFCI,
@@ -146,7 +146,7 @@ async function detailsByIdDao(id, where) {
     img: img,
   };
   //
-  return dog;
+  return pet;
 }
 
 export {searchByInputUserDao, findAllByFirstLetterDao, detailsByIdDao}
