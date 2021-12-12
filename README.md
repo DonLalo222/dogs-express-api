@@ -5,7 +5,7 @@
 
 ## Rutas
 
-**Root**: 	https://donlalo-api-dogs.herokuapp.com/api
+**Root**: 	https://donlalo-api-pets.herokuapp.com/api
 
 ## Búsqueda
 
