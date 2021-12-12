@@ -1,14 +1,17 @@
-import {
-  detailsByUrl,
-  searchByInputUser,
-  findAllByFirstLetter,
-} from "../dao/dog-dao.js";
+
+import { 
+  detailsByIdDao,
+  findAllByFirstLetterDao,
+  searchByInputUserDao
+ } from "../dao/dao.js";
+
+ const where = 'dogs';
 
 function search(req, res) {
-  let input = req.params.inputString.trim();
+  let input = req.query.q.trim();
   res.setHeader("Content-Type", "application/json");
   try {
-    let result = searchByInputUser(input);
+    let result = searchByInputUserDao(input, where);
     //
     if (result.length > 0) {
       res.status(200).json({
@@ -28,11 +31,11 @@ function search(req, res) {
   }
 }
 
-async function details(req, res) {
-  let url = req.query.url.trim();
+async function detailsById(req, res) {
+  let id = req.params.id.trim();
   res.setHeader("Content-Type", "application/json");
   try {
-    let result = await detailsByUrl(url);
+    let result = await detailsByIdDao(Number.parseInt(id), where);
     res.status(200).json({
       result: result,
     });
@@ -44,11 +47,11 @@ async function details(req, res) {
   }
 }
 
-function letter(req, res) {
-  let input = req.params.inputString.trim();
+function findAllByFirstLetter(req, res) {
+  let input = req.params.letter.trim();
   res.setHeader("Content-Type", "application/json");
   try {
-    let result = findAllByFirstLetter(input.toLocaleUpperCase());
+    let result = findAllByFirstLetterDao(input, where);
     res.status(200).json({
       count: result.length,
       result: result,
@@ -61,4 +64,4 @@ function letter(req, res) {
   }
 }
 
-export { search, details, letter };
+export { search, detailsById, findAllByFirstLetter };

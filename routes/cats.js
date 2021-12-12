@@ -1,10 +1,10 @@
 import express from 'express';
-import { search, detailsById, findAllByFirstLetter } from "../controllers/dogs-controller.js";
+import { search, detailsById, findAllByFirstLetter } from "../controllers/cats-controller.js";
 
 const router = express.Router();
 
 router.get('/search', search);
-router.get('/details/:id', await detailsById);
+router.get('/details/:id', detailsById);
 router.get('/letter/:letter', findAllByFirstLetter );
 
 

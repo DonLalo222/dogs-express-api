@@ -1,6 +1,6 @@
-# dogs-express-api
+# pets-express-api
  
- Api de Dogs que contiene información de 239 razas, información obtenida mediante técnicas de web scraping usando tecnologías como node, librería cheerio (manipulación del Dom), escrito en javascript con expressjs.
+ Api de mascotas que contiene información de perros y gatos, información obtenida mediante técnicas de web scraping usando tecnologías como node, librería cheerio (manipulación del Dom), escrito en javascript con expressjs.
 
 
 ## Rutas
@@ -9,10 +9,12 @@
 
 ## Búsqueda
 
-/dogs/search/{**input**}  
+/dogs/search?q={**input**}  
+/cats/search?q={**input**}  
+
   *Devuelve un objeto basado en las coincidencias de* {**input**}
   
-  **Ejemplo:** /dogs/search/labrador
+  **Ejemplo:** /dogs/search?q=labrador
 
 **Result**:
 ```
@@ -20,6 +22,7 @@
 	    "count": 1,
 		    "result": [
 			    {
+                    "id": 45,
 				    "name": "Labrador Retriever",
 				    "url": "https://www.expertoanimal.com/razas-de-perros/labrador-retriever.html",
 				    "img": "https://t2.ea.ltmcdn.com/es/razas/0/0/1/img_100_labrador-retriever_0_300_square.jpg"
@@ -30,6 +33,9 @@
 ## Búsqueda por Abecedario
 
 /dogs/letter/{**letra**}
+
+/cats/letter/{**letra**}
+
   *Devuelve un objeto donde* **Result** *contiene un array de elementos que empiezan con* **letra**
   
   **Ejemplo:** /dogs/letter/a
@@ -49,10 +55,13 @@
 ```
 ## Obtener Detalles 
 
-/dogs/details?url={**url**}
-  *Devuelve un objeto con los detalles de un perro en base a la propiedad **url**
+/dogs/details/{**id**}
+
+/cats/details/{**id**}
+
+Devuelve un objeto con los detalles de la mascota en base a la propiedad **id**
   
-  **Ejemplo:** /dogs/details?url=https://www.expertoanimal.com/razas-de-perros/alano-espanol.html
+  **Ejemplo:** /dogs/details/45
 
 **Result**:
 ```
@@ -71,3 +80,5 @@
 		    }
     }
 ```
+
+

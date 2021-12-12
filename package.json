@@ -2,13 +2,13 @@
   "type": "module",
   "name": "dogs-express-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Pet Information",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
   },
-  "author": "",
+  "author": "Eduardo Gomez (github => DonLalo222)",
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.10",
