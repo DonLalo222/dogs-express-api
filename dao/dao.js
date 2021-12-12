@@ -29,7 +29,20 @@ function selectData(where) {
   return data;
 }
 
+function clearArr() {
+  origen = [];
+  caracteristicas = [];
+  clasificacionFCI = [];
+  caracter = [];
+  idealPara = [];
+  pelo = [];
+}
+
+
 function pushOnArray(arr, $) {
+  //
+  clearArr();
+  //
   arr.map((i) => {
     let titulo = $(i).find("div.titulo").text().trim();
     //
@@ -149,4 +162,4 @@ async function detailsByIdDao(id, where) {
   return pet;
 }
 
-export {searchByInputUserDao, findAllByFirstLetterDao, detailsByIdDao}
+export { searchByInputUserDao, findAllByFirstLetterDao, detailsByIdDao }
